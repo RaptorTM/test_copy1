@@ -92,7 +92,8 @@ namespace WindowsFormsApp1
                     break;
             }
             //           IPForm.ActiveForm.Visible = false;
-            form1.get_routes();
+            
+            Task.Run(() => { form1.get_routes(); });
             Close();
         }
 

@@ -27,7 +27,7 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            form1.get_routes();
+            Task.Run(() => { form1.get_routes(); });           
         }
     }
 }

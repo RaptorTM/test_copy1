@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
 
 
         public Form1()
-        {    
+        {   
             InitializeComponent();
 
             //Получаем версию ОС
@@ -1533,7 +1533,7 @@ namespace WindowsFormsApp1
             if (tabControl1.SelectedIndex == 2)
             {
                 network_adapters();
-                get_routes();
+                Task.Run(() => { get_routes(); });
             }
 
         }
@@ -2449,10 +2449,14 @@ namespace WindowsFormsApp1
             //New_get_routes();
         }
 
-        public void get_routes()
+        public async void get_routes()
         {
             btn_get_routes.Enabled = false;
-            lv_dynamic_route.Items.Clear();
+            this.Invoke(new Action(() =>
+            {
+                lv_dynamic_route.Items.Clear();
+            }));
+            
             int i = 0;
             try
             {
@@ -2491,14 +2495,23 @@ namespace WindowsFormsApp1
                     }
                     else { item.SubItems.Add(queryObj["InterfaceIndex"].ToString()); }
 
-                    lv_dynamic_route.Items.Add(item);
+                    this.Invoke(new Action(() =>
+                    {
+                        lv_dynamic_route.Items.Add(item);
+                    }
+                    ));
+                    
                 }
             }
             catch (ManagementException ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            lv_static_route.Items.Clear();
+            this.Invoke(new Action(() =>
+            {
+                lv_static_route.Items.Clear();
+            }));
+            
 //            lv_static_route.Items.Clear();
             int it = 1;
             ListViewItem item1 = new ListViewItem(it.ToString());
@@ -2510,7 +2523,7 @@ namespace WindowsFormsApp1
 
                 foreach (ManagementObject queryObj2 in searcher_2.Get())
                 {
-                    Adress_colum_static.Width = 100;
+                    this.Invoke(new Action(() => { Adress_colum_static.Width = 100; }));                    
                     it++;
                     item1.SubItems.Add(queryObj2["Destination"]?.ToString());
                     item1.SubItems.Add(queryObj2["Mask"]?.ToString());
@@ -2520,10 +2533,10 @@ namespace WindowsFormsApp1
                 if (lv_static_route.Items.Count < 1)
                 {
                     item1.SubItems.Add("Нет статических маршрутов".ToString());
-                    Adress_colum_static.Width = 160;
+                    this.Invoke(new Action(() => { Adress_colum_static.Width = 160; }));                   
                     it = 0;
                 }
-                lv_static_route.Items.Add(item1);
+                this.Invoke(new Action(() => { lv_static_route.Items.Add(item1); }));              
             }
             catch (ManagementException ex)
             {
@@ -2778,7 +2791,7 @@ namespace WindowsFormsApp1
         }
         void IPForm_Closed(object sender, FormClosedEventArgs e)
         {
-            get_routes();
+            Task.Run(() => { get_routes(); });
         }
 
         private void Copy_Click(object sender, EventArgs e)
@@ -2842,13 +2855,13 @@ namespace WindowsFormsApp1
                     WindowStyle = ProcessWindowStyle.Hidden
                 };
                 Process.Start(process);
-                get_routes();
+                Task.Run(() => { get_routes(); });
             }
         }
 
         private void Refres_Click(object sender, EventArgs e)
         {
-            get_routes();
+            Task.Run(() => { get_routes(); });
         }
 
         private void lv_adapters_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
@@ -2863,13 +2876,13 @@ namespace WindowsFormsApp1
         {
             if(e.KeyData == Keys.F5)
             {
-                get_routes();
+                Task.Run(() => { get_routes(); });
             }
         }
 
         private void lv_static_route_KeyDown(object sender, KeyEventArgs e)
         {
-            get_routes();
+            Task.Run(() => { get_routes(); });
         }
 
         private void button6_Click(object sender, EventArgs e)
