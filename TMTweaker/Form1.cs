@@ -2197,9 +2197,21 @@ namespace WindowsFormsApp1
 
                 foreach (ManagementObject queryObj in searcher.Get())
                 {
-                    string core = queryObj["NumberOfCores"]?.ToString();
+                    string core = queryObj["NumberOfEnabledCore"]?.ToString();
                     string threads = queryObj["NumberOfLogicalProcessors"]?.ToString();
-                    lbl_CPU.Invoke(new Action(() => lbl_CPU.Text = "CPU: " + queryObj["Name"]?.ToString().Replace("CPU", "") + " Cores:" + core + "/" + threads));
+                    string CPUName = queryObj["Name"]?.ToString().Replace("CPU", "");
+                    for (int i = 0; i < CPUName.Length; i++)
+                    {
+                        if(CPUName.EndsWith(" "))
+                        {
+                            CPUName = CPUName.Substring(0, CPUName.Length - 1);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    lbl_CPU.Invoke(new Action(() => lbl_CPU.Text = "CPU: " + CPUName + " Cores:" + core + "/" + threads));
                 }
             }
             catch (ManagementException ex)

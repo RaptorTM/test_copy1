@@ -1468,7 +1468,7 @@
             // 
             // btn_PC_conf_update
             // 
-            this.btn_PC_conf_update.Location = new System.Drawing.Point(15, 306);
+            this.btn_PC_conf_update.Location = new System.Drawing.Point(30, 306);
             this.btn_PC_conf_update.Name = "btn_PC_conf_update";
             this.btn_PC_conf_update.Size = new System.Drawing.Size(75, 23);
             this.btn_PC_conf_update.TabIndex = 97;
@@ -1479,7 +1479,7 @@
             // btn_PC_conf_export
             // 
             this.btn_PC_conf_export.Enabled = false;
-            this.btn_PC_conf_export.Location = new System.Drawing.Point(108, 306);
+            this.btn_PC_conf_export.Location = new System.Drawing.Point(214, 306);
             this.btn_PC_conf_export.Name = "btn_PC_conf_export";
             this.btn_PC_conf_export.Size = new System.Drawing.Size(75, 23);
             this.btn_PC_conf_export.TabIndex = 98;
@@ -1717,12 +1717,14 @@
             // 
             // button6
             // 
+            this.button6.Enabled = false;
             this.button6.Location = new System.Drawing.Point(15, 518);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(120, 23);
             this.button6.TabIndex = 108;
             this.button6.Text = "OpenNewForm";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
