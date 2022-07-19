@@ -1532,8 +1532,15 @@ namespace WindowsFormsApp1
 
             if (tabControl1.SelectedIndex == 2)
             {
-                network_adapters();
-                Task.Run(() => { get_routes(); });
+                if(lv_adapters.Items.Count > 0)
+                {
+
+                }
+                else
+                {
+                    network_adapters();
+                    Task.Run(() => { get_routes(); });
+                }
             }
 
         }
@@ -2390,6 +2397,7 @@ namespace WindowsFormsApp1
 
         private void network_adapters()
         {
+            
             lv_adapters.Items.Clear();
             int i = 0;
             try
@@ -2431,7 +2439,21 @@ namespace WindowsFormsApp1
                     item.SubItems.Add(queryObj["NetEnabled"]?.ToString().Replace("False", "Down").Replace("True", "Up"));
 
                     lv_adapters.Items.Add(item);
+
+                    lv_adapters.Items[i-1].UseItemStyleForSubItems = false;
+
+                    if (item.SubItems[7].Text == "Up")
+                    {
+                        lv_adapters.Items[i-1].SubItems[7].BackColor = Color.LightGreen;
+                    }
+                    else if (item.SubItems[7].Text == "Down")
+                    {
+                        {
+                            lv_adapters.Items[i - 1].SubItems[7].BackColor = Color.FromArgb(0xf8, 0x8d, 0x85); //LightRed Color
+                        } 
+                    }                  
                 }
+
             }
             catch (ManagementException ex)
             {
@@ -2439,19 +2461,14 @@ namespace WindowsFormsApp1
             }
         }
 
+
         private void Refresh_Click(object sender, EventArgs e)
         {
             network_adapters();
         }
 
-        private void btn_get_routes_Click(object sender, EventArgs e)
-        {
-            //New_get_routes();
-        }
-
         public async void get_routes()
         {
-            btn_get_routes.Enabled = false;
             this.Invoke(new Action(() =>
             {
                 lv_dynamic_route.Items.Clear();
@@ -2494,6 +2511,12 @@ namespace WindowsFormsApp1
                         item.SubItems.Add("localhost");
                     }
                     else { item.SubItems.Add(queryObj["InterfaceIndex"].ToString()); }
+                    this.Invoke(new Action(() =>
+                    {
+                        item.SubItems.Add(Get_AdapterNameOnIndex(queryObj["InterfaceIndex"].ToString()));
+                    }));
+
+
 
                     this.Invoke(new Action(() =>
                     {
@@ -2512,7 +2535,6 @@ namespace WindowsFormsApp1
                 lv_static_route.Items.Clear();
             }));
             
-//            lv_static_route.Items.Clear();
             int it = 1;
             ListViewItem item1 = new ListViewItem(it.ToString());
             try
@@ -2542,8 +2564,23 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show(ex.Message);
             }
-            btn_get_routes.Enabled = true;
         }
+
+
+        private string Get_AdapterNameOnIndex(string index)
+        {
+            string item = "";
+            for (int i = 0; i < lv_adapters.Items.Count; i++)
+            {
+                if (index == lv_adapters.Items[i].SubItems[2].Text)
+                {
+                    item = lv_adapters.Items[i].SubItems[3].Text;
+                    break;       
+                }
+            }
+            return item;
+        }
+
         #endregion Вкладка сетевых настроек
 
 
@@ -2922,7 +2959,6 @@ namespace WindowsFormsApp1
                 chbx_ModusFontsDefault.ForeColor = Color.Black;
             }
         }
-
     }
 
     public class class_Route_parameters

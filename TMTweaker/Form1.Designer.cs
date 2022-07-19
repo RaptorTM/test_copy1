@@ -120,10 +120,8 @@
             this.user_loaded = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.Network = new System.Windows.Forms.TabPage();
-            this.btn_get_routes = new System.Windows.Forms.Button();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.Dinamic_Routes = new System.Windows.Forms.TabPage();
-            this.button4 = new System.Windows.Forms.Button();
             this.lv_dynamic_route = new System.Windows.Forms.ListView();
             this.Numb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Address = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -132,6 +130,7 @@
             this.Interface = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Metric = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Index = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.WorkOn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.button5 = new System.Windows.Forms.Button();
             this.Static_Routes = new System.Windows.Forms.TabPage();
             this.lv_static_route = new System.Windows.Forms.ListView();
@@ -140,8 +139,6 @@
             this.Mask_colum_static = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Gateway_colum_static = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Metric_colum_static = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.lv_adapters = new System.Windows.Forms.ListView();
             this.Num = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -1156,7 +1153,6 @@
             // Network
             // 
             this.Network.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.Network.Controls.Add(this.btn_get_routes);
             this.Network.Controls.Add(this.tabControl2);
             this.Network.Controls.Add(this.lv_adapters);
             this.Network.Controls.Add(this.btn_get_network_adapters);
@@ -1167,17 +1163,6 @@
             this.Network.TabIndex = 3;
             this.Network.Text = "Сеть";
             // 
-            // btn_get_routes
-            // 
-            this.btn_get_routes.Location = new System.Drawing.Point(695, 409);
-            this.btn_get_routes.Name = "btn_get_routes";
-            this.btn_get_routes.Size = new System.Drawing.Size(75, 23);
-            this.btn_get_routes.TabIndex = 4;
-            this.btn_get_routes.Text = "Get routes";
-            this.btn_get_routes.UseVisualStyleBackColor = true;
-            this.btn_get_routes.Visible = false;
-            this.btn_get_routes.Click += new System.EventHandler(this.btn_get_routes_Click);
-            // 
             // tabControl2
             // 
             this.tabControl2.Controls.Add(this.Dinamic_Routes);
@@ -1185,30 +1170,20 @@
             this.tabControl2.Location = new System.Drawing.Point(6, 142);
             this.tabControl2.Name = "tabControl2";
             this.tabControl2.SelectedIndex = 0;
-            this.tabControl2.Size = new System.Drawing.Size(646, 337);
+            this.tabControl2.Size = new System.Drawing.Size(776, 337);
             this.tabControl2.TabIndex = 107;
             // 
             // Dinamic_Routes
             // 
-            this.Dinamic_Routes.Controls.Add(this.button4);
             this.Dinamic_Routes.Controls.Add(this.lv_dynamic_route);
             this.Dinamic_Routes.Controls.Add(this.button5);
             this.Dinamic_Routes.Location = new System.Drawing.Point(4, 22);
             this.Dinamic_Routes.Name = "Dinamic_Routes";
             this.Dinamic_Routes.Padding = new System.Windows.Forms.Padding(3);
-            this.Dinamic_Routes.Size = new System.Drawing.Size(638, 311);
+            this.Dinamic_Routes.Size = new System.Drawing.Size(768, 311);
             this.Dinamic_Routes.TabIndex = 0;
             this.Dinamic_Routes.Text = "Все маршруты";
             this.Dinamic_Routes.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(657, 74);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 118;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
             // 
             // lv_dynamic_route
             // 
@@ -1220,13 +1195,14 @@
             this.Gateway,
             this.Interface,
             this.Metric,
-            this.Index});
+            this.Index,
+            this.WorkOn});
             this.lv_dynamic_route.FullRowSelect = true;
             this.lv_dynamic_route.GridLines = true;
             this.lv_dynamic_route.HideSelection = false;
             this.lv_dynamic_route.Location = new System.Drawing.Point(0, 0);
             this.lv_dynamic_route.Name = "lv_dynamic_route";
-            this.lv_dynamic_route.Size = new System.Drawing.Size(638, 312);
+            this.lv_dynamic_route.Size = new System.Drawing.Size(772, 312);
             this.lv_dynamic_route.TabIndex = 3;
             this.lv_dynamic_route.UseCompatibleStateImageBehavior = false;
             this.lv_dynamic_route.View = System.Windows.Forms.View.Details;
@@ -1270,6 +1246,11 @@
             // 
             this.Index.Text = "Index";
             // 
+            // WorkOn
+            // 
+            this.WorkOn.Text = "Имя адаптера";
+            this.WorkOn.Width = 209;
+            // 
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(657, 36);
@@ -1282,12 +1263,10 @@
             // Static_Routes
             // 
             this.Static_Routes.Controls.Add(this.lv_static_route);
-            this.Static_Routes.Controls.Add(this.button3);
-            this.Static_Routes.Controls.Add(this.button1);
             this.Static_Routes.Location = new System.Drawing.Point(4, 22);
             this.Static_Routes.Name = "Static_Routes";
             this.Static_Routes.Padding = new System.Windows.Forms.Padding(3);
-            this.Static_Routes.Size = new System.Drawing.Size(638, 311);
+            this.Static_Routes.Size = new System.Drawing.Size(768, 311);
             this.Static_Routes.TabIndex = 1;
             this.Static_Routes.Text = "Статические маршруты";
             this.Static_Routes.UseVisualStyleBackColor = true;
@@ -1306,7 +1285,7 @@
             this.lv_static_route.HideSelection = false;
             this.lv_static_route.Location = new System.Drawing.Point(0, 0);
             this.lv_static_route.Name = "lv_static_route";
-            this.lv_static_route.Size = new System.Drawing.Size(638, 315);
+            this.lv_static_route.Size = new System.Drawing.Size(772, 315);
             this.lv_static_route.TabIndex = 4;
             this.lv_static_route.UseCompatibleStateImageBehavior = false;
             this.lv_static_route.View = System.Windows.Forms.View.Details;
@@ -1339,24 +1318,6 @@
             this.Metric_colum_static.Text = "Метрика";
             this.Metric_colum_static.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.Metric_colum_static.Width = 61;
-            // 
-            // button3
-            // 
-            this.button3.Location = new System.Drawing.Point(657, 74);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 116;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(657, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 115;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // lv_adapters
             // 
@@ -1756,20 +1717,19 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(131, 366);
+            this.button6.Location = new System.Drawing.Point(15, 518);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(75, 23);
+            this.button6.Size = new System.Drawing.Size(120, 23);
             this.button6.TabIndex = 108;
-            this.button6.Text = "button6";
+            this.button6.Text = "OpenNewForm";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Visible = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1146, 553);
+            this.ClientSize = new System.Drawing.Size(1138, 553);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.lbl_SerialNumber);
             this.Controls.Add(this.Prog_Version);
@@ -1910,7 +1870,6 @@
         private System.Windows.Forms.ColumnHeader ID;
         private System.Windows.Forms.ColumnHeader Net_Online;
         private System.Windows.Forms.ColumnHeader IP_Adr;
-        private System.Windows.Forms.Button btn_get_routes;
         private System.Windows.Forms.ListView lv_dynamic_route;
         private System.Windows.Forms.ColumnHeader Numb;
         private System.Windows.Forms.ColumnHeader Address;
@@ -1939,10 +1898,7 @@
         private System.Windows.Forms.ToolStripMenuItem cMS_Adatres_Copy_Cell;
         private System.Windows.Forms.ToolStripMenuItem cMS_Adatres_Copy_String;
         private System.Windows.Forms.ToolStripMenuItem cMS_Adatres_Config_Adapter;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn index_nuber;
         private System.Windows.Forms.DataGridViewTextBoxColumn User_Name_Column;
         private System.Windows.Forms.DataGridViewTextBoxColumn SID_Column;
@@ -1979,6 +1935,7 @@
         private System.Windows.Forms.ToolStripMenuItem Refres;
         private System.Windows.Forms.ToolStripMenuItem Refresh;
         private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ColumnHeader WorkOn;
     }
 }
 
